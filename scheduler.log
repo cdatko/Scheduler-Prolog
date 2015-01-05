@@ -1,0 +1,216 @@
+true.
+
+?- ['scheduler.pro'].
+% scheduler.pro compiled 0.00 sec, 1 clauses
+true.
+
+?- ['sde2_sample_databases.pro'].
+% sde2_sample_databases.pro compiled 0.00 sec, 1 clauses
+true.
+
+?- ['test.pro'].
+% test.pro compiled 0.00 sec, 1 clauses
+true.
+
+?- listing(goal1).
+goal1 :-
+	print_assignment([ece3220, 4, 'Chris']).
+
+true.
+
+?- goal1.
+Chris is assigned to ece3220, Section 4
+true.
+
+?- listing(goal2).
+goal2 :-
+	print_assignment([ece4020, 1, 'Thom']).
+
+true.
+
+?- goal2.
+Thom is assigned to ece4020, Section 1
+true.
+
+?- listing(goal3).
+goal3 :-
+	no_overlap(2, 6, 12, 18).
+
+true.
+
+?- goal3.
+true.
+
+?- listing(goal4).
+goal4 :-
+	no_overlap(3, 5, 2, 4).
+
+true.
+
+?- goal4.
+false.
+
+?- listing(goal5).
+goal5 :-
+	no_conflict(f, 9, 11, tu, 9, 11).
+
+true.
+
+?- goal5.
+true.
+
+?- listing(goal6).
+goal6 :-
+	no_conflict(m, 1, 11, m, 2, 4).
+
+true.
+
+?- goal6.
+false.
+
+?- listing(goal7).
+goal7 :-
+	no_conflict_all_unavailable(m, 9, 12, [[tu, 12, 16]]).
+
+true.
+
+?- goal7.
+true.
+
+?- listing(goal8).
+goal8 :-
+	no_conflict_all_unavailable(m, 1, 5, [[m, 4, 5]]).
+
+true.
+
+?- goal8.
+false.
+
+?- listing(goal9).
+goal9 :-
+	needs([[A, B, C, D, E]|_]),
+	resources([[F, G, H]|_]),
+	assign([A, B, C, D, E],
+	       [F, G, H],
+	       [A, B, F]), !,
+	write([A, B, F]),
+	nl,
+	nl.
+
+true.
+
+?- goal9.
+[ece2090,1,joe]
+
+true.
+
+?- listing(goal10).
+goal10 :-
+	needs4([_, [A, B, C, D, E]|_]),
+	resources([[F, G, H]|_]),
+	assign([A, B, C, D, E],
+	       [F, G, H],
+	       [A, B, F]), !,
+	write([A, B, F]),
+	nl,
+	nl.
+
+true.
+
+?- goal10.
+false.
+
+?- listing(goal11).
+goal11 :-
+	needs([A|_]),
+	resources3(B),
+	course_solution(A, B, C),
+	write(C),
+	nl,
+	nl.
+
+true.
+
+?- goal11.
+[none,none,none]
+
+true.
+
+?- listing(goal12).
+goal12 :-
+	needs([A|_]),
+	resources4(B),
+	course_solution(A, B, C),
+	write(C),
+	nl,
+	nl.
+
+true.
+
+?- goal12.
+[ece2090,1,joe]
+
+true.
+
+?- listing(goal13).
+goal13 :-
+	resources2(A),
+	remove_student(joe, A, B),
+	write(B),
+	nl,
+	nl.
+
+true.
+
+?- goal13.
+[[sam,[ece2010,ece4420],[]],[pete,[ece3520,ece4420],[]],[randi,[ece2090],[]],[gwen,[ece2090,ece2010],[]]]
+
+true.
+
+?- listing(goal14).
+goal14 :-
+	resources2(A),
+	remove_student(none, A, B),
+	write(B),
+	nl,
+	nl.
+
+true.
+
+?- goal14.
+[[joe,[ece2090,ece2010,ece3520,ece4420],[[m,13,16]]],[sam,[ece2010,ece4420],[]],[pete,[ece3520,ece4420],[]],[randi,[ece2090],[]],[gwen,[ece2090,ece2010],[]]]
+
+true.
+
+?- listing(goal15).
+goal15 :-
+	needs4(A),
+	resources3(B),
+	overall_solution(A, B, C),
+	write(C),
+	nl,
+	nl.
+
+true.
+
+?- goal15.
+[[none,none,none],[none,none,none],[ece3520,1,joe],[ece4420,2,sam]]
+
+true.
+
+?- listing(goal16).
+goal16 :-
+	needs5(A),
+	resources4(B),
+	overall_solution(A, B, C),
+	write(C),
+	nl,
+	nl.
+
+true.
+
+?- goal16.
+[[ece2090,1,joe],[ece2060,1,sam]]
+
+true.
+
